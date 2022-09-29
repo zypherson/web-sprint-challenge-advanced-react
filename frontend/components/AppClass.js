@@ -71,8 +71,9 @@ export default class AppClass extends React.Component {
   }
 
   moveXleft = (evt) => {
+    const newMessage = "You can't go left"
     if(this.state.coordinateX < 2 ) {
-      return this.setState({...this.state, message: "You can't go left"})
+      return this.setState({...this.state, message: message ? newMessage : ''  })
     }
     
     const newX = this.state.coordinateX - 1
@@ -84,7 +85,7 @@ export default class AppClass extends React.Component {
   moveY = (evt) => {
     if(this.state.coordinateY < 2 ) {
       return this.setState({...this.state, message: "You can't go up"})
-    }
+   }
     const newY = this.state.coordinateY - 1
     const newIdx = this.state.initialIndex - 3
     const newMovesY = this.state.totalMoves + 1
