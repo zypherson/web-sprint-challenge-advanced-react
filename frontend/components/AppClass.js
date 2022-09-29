@@ -45,7 +45,7 @@ export default class AppClass extends React.Component {
 
   reset = () => {
     // Use this helper to reset all states to their initial values.
-    this.setState({...this.state, totalMoves: 0, coordinateX: 2, coordinateY:2, initialIndex: 4, totalMoves: 0, email: initialEmail})
+    this.setState({...this.state, totalMoves: 0, coordinateX: 2, coordinateY:2, initialIndex: 4, totalMoves: 0, email: initialEmail, message: ''})
   }
 
   getNextIndex = (direction) => {
@@ -71,9 +71,9 @@ export default class AppClass extends React.Component {
   }
 
   moveXleft = (evt) => {
-    const newMessage = "You can't go left"
+     
     if(this.state.coordinateX < 2 ) {
-      return this.setState({...this.state, message: message ? newMessage : ''  })
+      return this.setState({...this.state, message: "You can't go left"  })
     }
     
     const newX = this.state.coordinateX - 1
@@ -139,7 +139,7 @@ export default class AppClass extends React.Component {
       <div id="wrapper" className={className}>
         <div className="info">
           <h3 id="coordinates">{`Coordinates (${this.state.coordinateX}, ${this.state.coordinateY})`}</h3>
-          <h3 id="steps">{`You moved ${this.state.totalMoves} times`}</h3>
+          <h3 id="steps">{this.state.totalMoves === 1 ? `You moved ${this.state.totalMoves} time` : `You moved ${this.state.totalMoves} times`}</h3>
         </div>
         <div id="grid">
           {

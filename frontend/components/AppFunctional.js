@@ -22,7 +22,7 @@ const [state, setState] = useState({
 
 const reset = () => {
   // Use this helper to reset all states to their initial values.
-  setState({...state, totalMoves: 0, coordinateX: 2, coordinateY:2, initialIndex: 4, totalMoves: 0, email: initialEmail})
+  setState({...state, totalMoves: 0, coordinateX: 2, coordinateY:2, initialIndex: 4, totalMoves: 0, email: initialEmail, message:''})
 }
 
 getNextIndex = (direction) => {
@@ -32,12 +32,19 @@ getNextIndex = (direction) => {
 
 }
 
+const resetMessage = () => {
+  setState({...state, message: ''})
+}
+
 
 const moveX = (evt) => {
   // This event handler can use the helper above to obtain a new index for the "B",
   // and change any states accordingly.
+  //let newMessage = ''
   if(state.coordinateX > 2 ) {
-    return setState({...state, message: "You can't go right"})
+   const newMessage = state.coordinateX > 2 ? "You can't go right" : 'newMessage'
+    return setState({...state, message: newMessage })
+    
   }
   
   
@@ -48,9 +55,12 @@ const moveX = (evt) => {
 }
 
 const moveXleft = (evt) => {
-   
+  let newMessage = ''
+   //newMessage = state.coordinateX < 2 ? "you cant go left" : ''
   if(state.coordinateX < 2 ) {
-    return setState({...state, message: "You can't go left"  })
+    newMessage = state.coordinateX < 2 ? "You can't go left" : ''
+    console.log(newMessage)
+    return setState({...state, message:  newMessage   })
   }
   
   const newX = state.coordinateX - 1
@@ -134,14 +144,14 @@ const onSubmit = (evt) => {
     // This event handler can use the helper above to obtain a new index for the "B",
     // and change any states accordingly.
   }
-
+  
   
 
   return (
     <div id="wrapper" className={props.className}>
       <div className="info">
           <h3 id="coordinates">{`Coordinates (${state.coordinateX}, ${state.coordinateY})`}</h3>
-          <h3 id="steps">{`You moved ${state.totalMoves} times`}</h3>
+          <h3 id="steps">{state.totalMoves === 1 ? `You moved ${state.totalMoves} time` : `You moved ${state.totalMoves} times`}</h3>
         </div>
         <div id="grid">
           {
