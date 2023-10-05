@@ -23,7 +23,7 @@ export default class AppClass extends React.Component {
   
   state = {
     
-    totalMoves:0,
+    totalMoves:0 ,
     coordinateX: 2,
     coordinateY: 2,
     initialIndex: 4,
